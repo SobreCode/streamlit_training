@@ -1,18 +1,17 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import altair as alt
 
-st.header('st.write')
-st.write("Hello *World* :sunglasses:")
-st.write(1234*4568)
+st.title('Customizing the theme of Streamlit apps')
 
-df = pd.DataFrame(
-    np.random.randn(200, 3),
-    columns=["a", "b", "c"]
-)
+st.write('Contents of the `.streamlit/config.toml` file of this app')
 
-c = alt.Chart(df).mark_circle().encode(
-    x="a", y="b", size="c", color="c"
-).properties(title='Hello')
-st.write(c)
+st.code("""
+[theme]
+primaryColor="#4285F4"
+backgroundColor="#FFFFFF"
+secondaryBackgroundColor="#F8F9FA"
+textColor="#202124"
+font="sans serif"
+""", language="toml")
+
+number = st.sidebar.slider('Select a number:', 0, 10, 5)
+st.write('Selected number from slider widget is:', number)
